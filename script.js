@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inputType.addEventListener('change', function () {
         if (inputType.value === 'electricity_cost') {
-            costLabel.style.display = '';
-            usageLabel.style.display = 'none';
+            costLabel.classList.remove('hidden');
+            usageLabel.classList.add('hidden');
             setRequiredAndDisabled(electricityCostInput, true, false);
             setRequiredAndDisabled(electricityUsageInput, false, true);
         } else {
-            costLabel.style.display = 'none';
-            usageLabel.style.display = '';
+            costLabel.classList.add('hidden');
+            usageLabel.classList.remove('hidden');
             setRequiredAndDisabled(electricityCostInput, false, true);
             setRequiredAndDisabled(electricityUsageInput, true, false);
         }
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <br>- Tỷ lệ dùng điện ban ngày: ${daytimeRate}%
             <br>- % điện muốn giảm: ${reductionRate}%
             <br>- Công suất hệ thống (ước tính): ${systemSizeKwp.toFixed(2)} kWp - Lưu trữ ${storageKwh.toFixed(2)} kWh
-            <br>- Chi phí đầu tư (ước tính): ${investment.toLocaleString()} VND${extraInfo}`;
+            <br>- Chi phí đầu tư (ước tính): ${Math.ceil(investment).toLocaleString()} VND${extraInfo}`;
         } else {
             // ... có thể bổ sung cho business nếu cần ...
             info = 'Chức năng này hiện chỉ hỗ trợ hệ dân dụng.';
@@ -202,18 +202,22 @@ document.addEventListener('DOMContentLoaded', function () {
         resultArea.innerHTML = `
             <strong>Kết quả ước tính:</strong><br><br>
             ${info}<br><br>
-            <b>Số lượng điện tạo ra theo năm:</b> ${annualProduction.toLocaleString()} kWh<br>
-            <b>Số tiền tiết kiệm theo năm:</b> ${annualSaving.toLocaleString()} VND<br>
+            <b>Số lượng điện tạo ra theo năm:</b> ${Math.ceil(annualProduction).toLocaleString()} kWh<br>
+            <b>Số tiền tiết kiệm theo năm:</b> ${Math.ceil(annualSaving).toLocaleString()} VND<br>
             <b>Số năm hoàn vốn:</b> ${paybackYears ? paybackYears.toFixed(1) : '-'} năm
         `;
-        resultArea.style.display = '';
+        resultArea.classList.add('active');
     });
 
     // Khởi tạo trạng thái đúng khi load trang
     if (inputType.value === 'electricity_cost') {
+        costLabel.classList.remove('hidden');
+        usageLabel.classList.add('hidden');
         setRequiredAndDisabled(electricityCostInput, true, false);
         setRequiredAndDisabled(electricityUsageInput, false, true);
     } else {
+        costLabel.classList.add('hidden');
+        usageLabel.classList.remove('hidden');
         setRequiredAndDisabled(electricityCostInput, false, true);
         setRequiredAndDisabled(electricityUsageInput, true, false);
     }

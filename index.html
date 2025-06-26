@@ -5,86 +5,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Power System Estimate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>🪷🪷🪷</h1>
-    <form id="estimate-form" style="max-width:600px;margin:40px auto 0;display:flex;flex-direction:column;gap:16px;">
-        <label>
-            <select id="input-type" name="input_type">
-                <option value="electricity_cost">Tiền điện (VND/tháng)</option>
-                <option value="electricity_usage">Số điện (kWh/tháng)</option>
-            </select>
-        </label>
-        <label id="cost-label">
-            Tiền điện (VND/tháng):
-            <input type="text" id="electricity-cost" name="electricity_cost" required min="0"
-                placeholder="Nhập số tiền điện hàng tháng">
-        </label>
-        <label id="usage-label" style="display:none;">
-            Số điện (kWh/tháng):
-            <input type="text" id="electricity-usage" name="electricity_usage" min="0"
-                placeholder="Nhập số điện tiêu thụ hàng tháng">
-        </label>
-        <label>
-            <select id="system-type" name="system_type">
-                <option value="residential">Hệ dân dụng</option>
-                <option value="business">Hộ kinh doanh</option>
-            </select>
-        </label>
-        <label>Loại tấm pin:
-            <select id="panel-type" name="panel_type">
-                <option value="3.2-630">Powiit Solar 630W</option>
-            </select>
-        </label>
-        <div id="residential-fields">
-            <label>Tỷ lệ dùng điện ban ngày (%):
-                <select id="daytime-usage-rate" name="daytime_usage_rate">
-                    <option value="20">20%</option>
-                    <option value="30">30%</option>
-                    <option value="40">40%</option>
-                    <option value="50" selected>50%</option>
-                    <option value="60">60%</option>
-                    <option value="70">70%</option>
-                    <option value="80">80%</option>
-                    <option value="90">90%</option>
+    <div class="container">
+        <form id="estimate-form">
+            <label>
+                <select id="input-type" name="input_type">
+                    <option value="electricity_cost">Tiền điện (VND/tháng)</option>
+                    <option value="electricity_usage">Số điện (kWh/tháng)</option>
                 </select>
             </label>
-            </br></br>
-            <label>% điện muốn giảm (tính trên hóa đơn điện hiện tại):
-                <select id="reduction-rate" name="reduction_rate">
-                    <option value="">Tối ưu theo diện tích mái</option>
-                    <!-- <option value="10">10%</option>
-                    <option value="20">20%</option>
-                    <option value="30">30%</option>
-                    <option value="40">40%</option> -->
-                    <option value="50" selected>50%</option>
-                    <option value="60">60%</option>
-                    <option value="70">70%</option>
-                    <option value="80">80%</option>
-                    <option value="90">90%</option>
+            <label id="cost-label">
+                Tiền điện (VND/tháng):
+                <input type="text" id="electricity-cost" name="electricity_cost" required min="0"
+                    placeholder="Nhập số tiền điện hàng tháng">
+            </label>
+            <label id="usage-label" class="hidden">
+                Số điện (kWh/tháng):
+                <input type="text" id="electricity-usage" name="electricity_usage" min="0"
+                    placeholder="Nhập số điện tiêu thụ hàng tháng">
+            </label>
+            <label>
+                <select id="system-type" name="system_type">
+                    <option value="residential">Hệ dân dụng</option>
+                    <option value="business">Hộ kinh doanh</option>
                 </select>
             </label>
-            </br></br>
-            <label>Diện tích mái (m²):
-                <input type="number" id="roof-area" name="roof_area" min="0" placeholder="Nhập diện tích mái (m²)">
+            <label>Loại tấm pin:
+                <select id="panel-type" name="panel_type">
+                    <option value="3.2-630">Powiit Solar 630W</option>
+                </select>
             </label>
-            </br>
+            <div id="residential-fields">
+                <label>Tỷ lệ dùng điện ban ngày (%):
+                    <select id="daytime-usage-rate" name="daytime_usage_rate">
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40">40%</option>
+                        <option value="50" selected>50%</option>
+                        <option value="60">60%</option>
+                        <option value="70">70%</option>
+                        <option value="80">80%</option>
+                        <option value="90">90%</option>
+                    </select>
+                </label>
+                </br></br>
+                <label>% điện muốn giảm (tính trên hóa đơn điện hiện tại):
+                    <select id="reduction-rate" name="reduction_rate">
+                        <option value="">Tối ưu theo diện tích mái</option>
+                        <!-- <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40">40%</option> -->
+                        <option value="50" selected>50%</option>
+                        <option value="60">60%</option>
+                        <option value="70">70%</option>
+                        <option value="80">80%</option>
+                        <option value="90">90%</option>
+                    </select>
+                </label>
+                </br></br>
+                <label>Diện tích mái (m²):
+                    <input type="number" id="roof-area" name="roof_area" min="0" placeholder="Nhập diện tích mái (m²)">
+                </label>
+                </br>
+            </div>
+            <div id="business-fields" class="hidden">
+                <label>Loại hình kinh doanh:
+                    <input type="text" id="business-type" name="business_type" placeholder="Nhập loại hình kinh doanh">
+                </label>
+                <label>Diện tích sử dụng (m²):
+                    <input type="number" id="business-area" name="business_area" min="0"
+                        placeholder="Nhập diện tích sử dụng">
+                </label>
+            </div>
+            <button type="submit">Tính toán</button>
+        </form>
+        <div id="result-area" class="result-area">
         </div>
-        <div id="business-fields" style="display:none;">
-            <label>Loại hình kinh doanh:
-                <input type="text" id="business-type" name="business_type" placeholder="Nhập loại hình kinh doanh">
-            </label>
-            <label>Diện tích sử dụng (m²):
-                <input type="number" id="business-area" name="business_area" min="0"
-                    placeholder="Nhập diện tích sử dụng">
-            </label>
-        </div>
-        <button type="submit">Tính toán</button>
-    </form>
-    <div id="result-area"
-        style="max-width:500px;margin:32px auto 0;display:none;padding:20px;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;">
     </div>
     <script src="script.js"></script>
 </body>
